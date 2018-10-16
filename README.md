@@ -1,7 +1,8 @@
 # Worn Street
 
 Selling used clothes is already a huge market. The problem is if you can’t sell  used clothes on ebuy or special stores they go trash. The worn street is  service where you sell the items before actually buying it.
-You buy cocktail dress. 
+
+![slide](https://raw.githubusercontent.com/worn-st/worn-st/master/slide.png)
 
 So before you buy cocktail dress, you place it on Worn Street. You make a proposal that you deliver the dress in a week. You will be used once or twice. And ready to sell it for half a price.
 
