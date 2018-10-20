@@ -1,7 +1,9 @@
 {% extends "_base.html" %}
-{% block content %}
 {% load static %}
+{% load thumbnail %}
 
+
+{% block content %}
 <aside id="colorlib-hero" class="breadcrumbs">
 	<div class="flexslider">
 		<ul class="slides">
@@ -35,9 +37,13 @@
 			</div>
 		</div>
 		<div class="row">
+			{% for choice in future.choice_set.all %}
 			<div class="col-md-3 text-center">
 				<div class="product-entry">
-					<div class="product-img" style="background-image: url(images/item-5.jpg);">
+					{% thumbnail choice.image "262x350" crop="center" as im %}
+						<div class="product-img" style="background-image: url({{ im.url }});">    
+					{% endthumbnail %}
+					
 						<p class="tag"><span class="new">New</span></p>
 						<div class="cart">
 							<p>
@@ -49,11 +55,16 @@
 						</div>
 					</div>
 					<div class="desc">
-						<h3><a href="shop.html">Floral Dress</a></h3>
-						<p class="price"><span>$300.00</span></p>
+						<h3>
+							<a href="shop.html">{{ choice.title }}</a>
+							at {{ choice.place }}
+						</h3>
+						<p class="price"><span>${{ choice.price }}</span></p>
+
 					</div>
 				</div>
 			</div>
+			{% endfor %}
 			<div class="col-md-3 text-center">
 				<div class="product-entry">
 					<div class="product-img" style="background-image: url(images/item-6.jpg);">
