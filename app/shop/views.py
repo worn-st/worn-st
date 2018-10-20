@@ -9,6 +9,10 @@ def index(request):
     return render(request, 'index.html', {
     })
 
+def shop(request):
+    return render(request, 'shop.html', {
+    })
+
 @login_required
 def futures(request):
     return render(request, 'futures.html', {

@@ -8,5 +8,6 @@ urlpatterns = [
 	path('futures', views.futures, name='futures'),
 	path('show_future/<int:pk>', views.show_future, name='show_future'),
 	path('future', views.future, name='future'),
+    path('shop', views.shop, name='shop'),
     path('', views.index, name='index'),
 ]
