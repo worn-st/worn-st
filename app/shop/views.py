@@ -1,6 +1,6 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
-from .models import Future
+from .models import Future, Choice
 from django.contrib.auth.decorators import login_required
 from .forms import FutureForm, ChoiceForm
 
@@ -11,12 +11,20 @@ def index(request):
 
 def shop(request):
     return render(request, 'shop.html', {
+        'products': Choice.objects.all()
     })
 
 @login_required
 def futures(request):
     return render(request, 'futures.html', {
     	'futures': Future.objects.filter(user=request.user)
+    })
+
+
+def product(request, pk):
+    product = Choice.objects.get(id=pk)
+    return render(request, 'product.html', {
+        'product': product
     })
 
 
