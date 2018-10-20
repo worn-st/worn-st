@@ -1,6 +1,8 @@
 {% extends "_base.html" %}
 {% block content %}
 {% load static %}
+{% load bootstrap4 %}
+
 
 <aside id="colorlib-hero" class="breadcrumbs">
 	<div class="flexslider">
@@ -29,7 +31,8 @@
 				<div class="contact-wrap">
 					<form method="post">
 						{% csrf_token %}
-						<div class="row form-group">
+						{% bootstrap_form form %}
+<!-- 						<div class="row form-group">
 							<div class="col-md-12">
 								<label for="email">Email</label>
 								<input type="text" id="email" name="username" class="form-control" placeholder="Your email address" required>
@@ -42,7 +45,7 @@
 								<input type="password" id="lname" required class="form-control">
 							</div>
 						</div>
-						<input type="hidden" name="next" value="{{ next }}" />
+ -->						<input type="hidden" name="next" value="{{ next }}" />
 						<div class="form-group text-center">
 							<input type="submit" value="Login" class="btn btn-primary">
 						</div>
