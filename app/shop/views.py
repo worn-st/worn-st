@@ -6,7 +6,8 @@ from .forms import FutureForm, ChoiceForm
 
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the polls index.")
+    return render(request, 'index.html', {
+    })
 
 @login_required
 def futures(request):
