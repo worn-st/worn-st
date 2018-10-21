@@ -5,7 +5,7 @@ from django import forms
 class FutureForm(forms.ModelForm):
     class Meta:
         model = Future
-        fields = ('title', 'date', 'usage')
+        fields = ('title', 'date', 'value', 'usage')
 
 
 class ChoiceForm(forms.ModelForm):

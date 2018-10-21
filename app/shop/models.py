@@ -5,6 +5,10 @@ from sorl.thumbnail import ImageField
 
 class Future(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    status = models.CharField(default='N', max_length=1)
+    buyer = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='purchases')
+    value = models.DecimalField(max_digits=6, decimal_places=2,
+        verbose_name="Selling price %")
     title = models.CharField(
     	max_length=200,
     	verbose_name='What do you want to buy?')
@@ -26,3 +30,7 @@ class Choice(models.Model):
         verbose_name="Buying price")
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     image = ImageField(upload_to='choices', blank=True)
+    selected = models.BooleanField(default=False)
+
+    def final_price(self):
+        pass
