@@ -26,6 +26,16 @@ def purchases(request):
         'purchases': Future.objects.filter(buyer=request.user)
     })
 
+def buy(request, pk):
+    product = Choice.objects.get(id=pk)
+    future = product.future
+    future.status = 'D'
+    future.buyer = request.user
+    future.save()
+    product.selected = True
+    product.save()
+    return HttpResponseRedirect('/purchases')
+
 def product(request, pk):
     product = Choice.objects.get(id=pk)
     return render(request, 'product.html', {

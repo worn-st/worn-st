@@ -64,8 +64,10 @@
 										amazon
 									</p>
 								</div>
-
-								<p><a href="cart.html" class="btn btn-primary btn-addtocart"><i class="icon-shopping-cart"></i> Buy</a></p>
+								<form action="/buy/{{ product.id }}" action="POST">
+									{% csrf_token %}
+								<p>	<input type="submit" value="Buy" class="btn btn-primary btn-addtocart"></p>
+								</form>
 							</div>
 						</div>
 					</div>
