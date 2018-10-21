@@ -6,7 +6,7 @@ from sorl.thumbnail import ImageField
 class Future(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     status = models.CharField(default='N', max_length=1)
-    buyer = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='purchases')
+    buyer = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, related_name='purchases')
     value = models.DecimalField(max_digits=6, decimal_places=2,
         verbose_name="Selling price %")
     title = models.CharField(
@@ -21,6 +21,13 @@ class Future(models.Model):
         if self.status == 'N':
             return 'New'
         return 'Selled'
+
+    def recommended(self):
+        if self.choice_set.count() == 0:
+            return None
+
+        return Choice.objects.filter(
+            future__title__contains=self.title).exclude(future__id=self.pk)
 
     def main_image(self):
         if not self.choice_set.first:

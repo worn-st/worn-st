@@ -11,7 +11,7 @@ def index(request):
 
 def shop(request):
     return render(request, 'shop.html', {
-        'products': Choice.objects.all()
+        'products': Choice.objects.filter(future__status='N')
     })
 
 @login_required
