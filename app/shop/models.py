@@ -33,4 +33,4 @@ class Choice(models.Model):
     selected = models.BooleanField(default=False)
 
     def final_price(self):
-        pass
+        return self.price * self.future.value / 100

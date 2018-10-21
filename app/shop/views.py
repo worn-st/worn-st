@@ -24,7 +24,8 @@ def futures(request):
 def product(request, pk):
     product = Choice.objects.get(id=pk)
     return render(request, 'product.html', {
-        'product': product
+        'product': product,
+        'form': ChoiceForm()
     })
 
 
