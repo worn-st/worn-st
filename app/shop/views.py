@@ -21,6 +21,11 @@ def futures(request):
     })
 
 
+def purchases(request):
+    return render(request, 'purchases.html', {
+        'purchases': Future.objects.filter(buyer=request.user)
+    })
+
 def product(request, pk):
     product = Choice.objects.get(id=pk)
     return render(request, 'product.html', {

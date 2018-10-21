@@ -1,0 +1,75 @@
+{% extends "_base.html" %}
+{% load static %}
+{% load thumbnail %}
+
+
+{% block content %}
+<aside id="colorlib-hero" class="breadcrumbs">
+	<div class="flexslider">
+		<ul class="slides">
+	   	<li style="background-image: url({% static 'images/cover-img-1.jpg' %});">
+	   		<div class="overlay"></div>
+	   		<div class="container-fluid">
+	   			<div class="row">
+		   			<div class="col-md-6 col-md-offset-3 col-sm-12 col-xs-12 slider-text">
+		   				<div class="slider-text-inner text-center">
+		   					<h1>My purchases</h1>
+		   					<h2 class="bread"><span><a href="/">Home</a></span>
+		   					 <span>My purchases</span>
+		   					 <span><a class="btn btn-primary">shop now</a></span></h2>
+
+		   				</div>
+		   			</div>
+		   		</div>
+	   		</div>
+	   	</li>
+	  	</ul>
+  	</div>
+</aside>
+
+
+<div class="colorlib-shop">
+	<div class="container">
+		<div class="row row-pb-md">
+			<div class="col-md-10 col-md-offset-1">
+				<div class="product-name">
+					<div class="one-forth text-center">
+						<span>Sale and date</span>
+					</div>
+					<div class="one-forth text-center">
+						<span>Date</span>
+					</div>
+				</div>
+{% for future in purchases %}
+				<div class="product-cart">
+					<div class="one-forth">
+						{% if future.main_image %}
+						{% thumbnail future.main_image "100x100" crop="center" as im %}
+							<div class="product-img" style="background-image: url({{ im.url }});">    
+						{% endthumbnail %}
+						{% else %}
+							<div class="product-img">
+						{% endif %}
+						</div>
+						<div class="display-tc">
+							<h3><a href="/show_future/{{ future.id }}"> {{ future.title }} on {{ future.date | date:"N j" }}</a></h3>
+						</div>
+					</div>
+					<div class="one-eight text-center">
+						<div class="display-tc">
+							<span class="price">{{ future.date | date:"N j" }}</span>
+						</div>
+					</div>
+					<div class="one-eight text-center">
+						<div class="display-tc">
+							<a href="#" class="closed"></a>
+						</div>
+					</div>
+				</div>
+{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
