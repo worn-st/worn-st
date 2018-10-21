@@ -26,6 +26,11 @@ def purchases(request):
         'purchases': Future.objects.filter(buyer=request.user)
     })
 
+def change_balance(user, delta):
+    new = float(user.last_name) + float(delta)
+    user.last_name = str(new)
+    user.save()
+
 def buy(request, pk):
     product = Choice.objects.get(id=pk)
     future = product.future
@@ -34,6 +39,10 @@ def buy(request, pk):
     future.save()
     product.selected = True
     product.save()
+
+    change_balance(request.user, -product.final_price())
+    change_balance(future.user, product.final_price())
+
     return HttpResponseRedirect('/purchases')
 
 def product(request, pk):
