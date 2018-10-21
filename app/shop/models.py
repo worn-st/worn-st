@@ -17,6 +17,16 @@ class Future(models.Model):
     usage = models.TextField(
     	verbose_name='How whould you use it?')
 
+    def status_text(self):
+        if self.status == 'N':
+            return 'New'
+        return 'Selled'
+
+    def main_image(self):
+        if not self.choice_set.first:
+            return None
+        return self.choice_set.first().image
+
 
 class Choice(models.Model):
     future = models.ForeignKey(Future, on_delete=models.CASCADE)
